@@ -45,6 +45,12 @@ function draw() {
 	let min = minute();
 	let sec = second();
 
+	// q: print minute if minute changes
+	// a: minute is changed everytime second is reset to 0
+	if (sec == 0){
+		console.log(min);
+	}
+
 	// declare time circles
 	let c_hour = new Circle(
 		c_x,
