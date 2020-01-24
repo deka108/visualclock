@@ -8,6 +8,7 @@ let width = 700;
 let height = 700;
 let c_x = width / 2;
 let c_y = height / 2;
+let bool_mins = new Array(60).fill(false);
 
 const color_maps = {
 	"sec": "rgba(239,83,80, 1)",
@@ -46,9 +47,19 @@ function draw() {
 	let sec = second();
 
 	// q: print minute if minute changes
-	// a: minute is changed everytime second is reset to 0
+	// a: 
+	// - minute is changed everytime second is reset to 0
+	// - use boolean array to ensure minute only printed once
 	if (sec == 0){
-		console.log(min);
+		if (min == 0){
+			for (let i=0; i<59; i++){
+				bool_mins[i] = false;
+			}
+		}
+		if (!bool_mins[min]){
+			bool_mins[min] = true;
+			console.log(min);
+		}		
 	}
 
 	// declare time circles
@@ -93,7 +104,6 @@ function draw() {
 			c_min.c_x + c_min.radius * Math.cos(angle), 
 			c_min.c_y + c_min.radius * Math.sin(angle));
 	}
-
 	noFill();
 	noStroke();
 
