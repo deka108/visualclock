@@ -51,11 +51,13 @@ function draw() {
 	// - minute is changed everytime second is reset to 0
 	// - use boolean array to ensure minute only printed once
 	if (sec == 0){
-		if (min == 0){
+		// reset if min is 0 and 59 is true
+		if (min == 0 && bool_mins[bool_mins.length-1]){
 			for (let i=0; i<59; i++){
 				bool_mins[i] = false;
 			}
 		}
+		// ensure minute is only printed once
 		if (!bool_mins[min]){
 			bool_mins[min] = true;
 			console.log(min);
